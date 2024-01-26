@@ -1,7 +1,7 @@
 ## 기술 스택
 - Gradle - Groovy
 - Amazon Corretto 11 (Java 11)
-- Springboot 3.1.8
+  - Springboot 2.7.0
 - Spring Web, Spring Data JPA, H2, Lombok
 - Eclipse IDE 23.12 version
 
@@ -44,3 +44,21 @@ spring initilizer에서 프로젝트를 다운로드 할 때 gradlew라는 프�
 ```
 Demo 우클릭 proference 진입 java compiler - annotation processing - enable project specific settings 체크
 ```
+## TodoEntity
+![image](https://github.com/mr-won/Todo_Backend/assets/58906858/396f1112-5056-423e-ab8d-b490a2f5aa5f)
+```
+모델과 엔티티를 한 클래스에 구현하고자 한다. 즉 데이터를 담는 역할과 데이터베이스의 테이블과 스키마를 표현하는
+역할을 한 클래스 내에 구현한다.
+```
+
+
+
+
+
+
+
+
+
+
+
+
