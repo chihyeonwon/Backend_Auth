@@ -55,7 +55,12 @@ Demo 우클릭 proference 진입 java compiler - annotation processing - enable 
 ```
 TodoDTO에는 데이터베이스에서 사용자를 구별하기 위한 userId를 제외한 Todo dto 클래스를 작성한다.
 ```
-
+## ResponseDTO<T>
+![image](https://github.com/mr-won/Todo_Backend/assets/58906858/6879f0a4-4680-4ab3-a1f3-7070a6d4589d)
+```
+Todo 데이터를 하나만 반환하는 경우보다 리스트로 반환하는 경우가 많으므로 데이터를 리스트로 반환하도록 짰다.
+또 다른 모델의 DTO 역시 ResponseDTO를 이용해 리턴할 수 있도록 자바 Generic을 이용하였다.
+```
 
 
 
