@@ -50,8 +50,11 @@ Demo 우클릭 proference 진입 java compiler - annotation processing - enable 
 모델과 엔티티를 한 클래스에 구현하고자 한다. 즉 데이터를 담는 역할과 데이터베이스의 테이블과 스키마를 표현하는
 역할을 한 클래스 내에 구현한다.
 ```
-
-
+## TodoDTO  
+![image](https://github.com/mr-won/Todo_Backend/assets/58906858/374f4cbc-57f8-42a7-9d0c-745bb5321143)
+```
+TodoDTO에는 데이터베이스에서 사용자를 구별하기 위한 userId를 제외한 Todo dto 클래스를 작성한다.
+```
 
 
 
