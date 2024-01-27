@@ -77,6 +77,17 @@ Layered System : 서버에 요청을 날릴 때 여러 개의 레이어(인증 �
 Code-On-Demand : 선택사항이며 클라이언트는 서버에 코드를 요청할 수 있고 서버가 리턴한 코드를 실행할 수 있다.
 REST는 HTTP와 다르다. REST는 HTTP를 이용해 구현하기 쉽고 REST 아키텍처를 구현할 때 사용하면 쉬운 프로토콜이 HTTP이다.
 ```
+## TestController
+![image](https://github.com/mr-won/Todo_Backend/assets/58906858/5e647847-7858-460a-b97d-df61e9d264c6)
+![image](https://github.com/mr-won/Todo_Backend/assets/58906858/a210e51d-02c1-44d4-bc50-e75ccdadb6bd)
+```
+SpringBoot-Stater-Web 패키지에서 제공하는 연결 작업의 어노테이션(@RestController, @GetMapping, @PostMapping, @PatchMapping 등)을
+사용할 수 있다.
+
+HTTP GET 요청을 대신하여 @RestController 어노테이션을 이용한 TestController를 구현하였다.
+localhost:8080/test 로 접근하면 Hello World 가 출력된다. 브라우저에서 URL을 입력해 접근하는 GET 요청을
+@RestController를 사용하여 구현하였다.
+```
 
 
 
