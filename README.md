@@ -126,7 +126,13 @@ DTO 오브젝트를 JSON으로 리턴하여 결과를 나타내준다.
 
 오브젝트를 JSON으로 변환하여 요청바디로 이용하거나 저장하는 일련의 모든 과정을 Serialization이라고 한다.
 ```
-
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/5c1ec8ab-4b61-4796-9696-d933231c839c)
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/e7b79331-6dda-44c7-a2c3-7edb766fa4a5)
+```
+@ResponseEntity를 이용하면 HTTP 응답의 Body 뿐만 아니라 status나 header를 조작할 수 있다.
+http status를 400, 즉 400 Bad Request를 추가하여 status를 조작한다.
+body의 내용은 @ResponseBody와 동일하다.
+```
 
 
 
