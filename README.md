@@ -133,7 +133,11 @@ DTO 오브젝트를 JSON으로 리턴하여 결과를 나타내준다.
 http status를 400, 즉 400 Bad Request를 추가하여 status를 조작한다.
 body의 내용은 @ResponseBody와 동일하다.
 ```
-
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/fa2b80e8-6f5a-4628-9b71-f0682d8d724c)
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/bc82632e-5328-43e4-a8de-af39dee8fd58)
+```
+todoController에는 200 ok http status를 반환하는 메서드를 작성하였다.
+```
 
 
 
