@@ -88,14 +88,35 @@ HTTP GET 요청을 대신하여 @RestController 어노테이션을 이용한 Tes
 localhost:8080/test 로 접근하면 Hello World 가 출력된다. 브라우저에서 URL을 입력해 접근하는 GET 요청을
 @RestController를 사용하여 구현하였다.
 ```
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/699bb3b4-6ef1-434a-9d79-eb1e0ffe0952)
 ![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/86e50025-461c-4b19-9ee1-dbb6adb63130)
 ```
 @PathVariable을 이용해서 경로로 들어오는 숫자 또는 문자를 변수에 매핑할 수 있다.
 /test 경로 뒤에 오는 숫자를 리턴하였다.
 ```
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/d9da9af5-f85b-41dc-b48a-149078cd69ed)
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/c1ff236d-f213-4d48-8520-edef69e2db44)
+```
+또 다른 방법인 @RequestParam을 이용하여 ?id={id}와 같이 요청 매개변수로 넘어오는 값을 변수로 받아올 수 있다.
+```
+## TestRequestBodyDTO
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/ca6c6141-784b-495d-9d80-04ae0c76b468)
+```
+마지막으로 @RequestBody를 사용하여 객체처럼 복잡한 자료형을 요청에 보낼 수 있다.
+요청 바디로 보낼 TestRequestDTO 클래스를 작성한다.
+```
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/f2ca8afb-c45e-4e8e-b60e-212313f86572)
+```
+TestRequestBodyDTO를 요청 바디로 받는 testControllerRequestBody() 메서드를 TestController에 추가한다.
+```
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/19c596fe-961a-40d3-a497-3f01a6e6b50e)
+```
+Postman 프로그램에서 /test/testRequestBody 경로로 TestRequestDTO와 같은 형태의 JSON 형식의 문자열을 요청 바디로
+넘겨준다.
 
+오브젝트인 TestRequestDTO를 JSON 형식의 문자열의 요청 바디로 사용하여 요청한다. 이 과정을 Serialization이라고 한다.
 
-
-
+@RequestBody : 오브젝트를 JSON과 같은 형태의 문자열 요청 바디로 변환한다.
+```
 
 
