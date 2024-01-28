@@ -88,7 +88,11 @@ HTTP GET 요청을 대신하여 @RestController 어노테이션을 이용한 Tes
 localhost:8080/test 로 접근하면 Hello World 가 출력된다. 브라우저에서 URL을 입력해 접근하는 GET 요청을
 @RestController를 사용하여 구현하였다.
 ```
-
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/86e50025-461c-4b19-9ee1-dbb6adb63130)
+```
+@PathVariable을 이용해서 경로로 들어오는 숫자 또는 문자를 변수에 매핑할 수 있다.
+/test 경로 뒤에 오는 숫자를 리턴하였다.
+```
 
 
 
