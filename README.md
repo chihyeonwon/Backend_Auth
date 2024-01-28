@@ -118,5 +118,20 @@ Postman 프로그램에서 /test/testRequestBody 경로로 TestRequestDTO와 같
 
 @RequestBody : 오브젝트를 JSON과 같은 형태의 문자열 요청 바디로 변환한다.
 ```
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/142de766-3821-421c-967f-b269a04bcd70)
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/697ac456-a0d6-46fb-9c83-69aa76269dfd)
+```
+이번에는 @ResponseBody를 이용하여 TestRequestDTO를 리턴하는 컨트롤러를 구현한다.
+DTO 오브젝트를 JSON으로 리턴하여 결과를 나타내준다.
+
+오브젝트를 JSON으로 변환하여 요청바디로 이용하거나 저장하는 일련의 모든 과정을 Serialization이라고 한다.
+```
+
+
+
+
+
+
+
 
 
