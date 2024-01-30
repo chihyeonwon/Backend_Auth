@@ -160,7 +160,23 @@ TodoEntity에 @Entity, @Table 어노테이션을 추가하고 @Id를 이용하�
 @GeneratedValue로 ID를 자동으로 생성하되 문자열 형태의 UUID를 사용하기 위해 @GenericGenerator로 generator의 이름을
 system-uuid로 정의하고 이를 @GenerateValue의 generator에서 사용하였다.
 ```
-
-
-
+## TodoRepository
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/8cd14588-2319-427b-980f-e3b712cd3761)
+```
+JpaRepository를 확장한 TodoRepository 인터페이스를 작성한다.
+```
+## TodoService
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/63ead31d-491f-4bba-b93d-8aedde1e533b)
+```
+TodoService 클래스에서 작성한 TodoRepository를 사용해서 TodoEntity를 생성하고 H2 데이터베이스에 엔티티를 저장하고
+findById 쿼리를 이용하여 저장한 TodoEntity의 title을 출력한다.
+```
+## TodoService 테스팅
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/d5721ea0-f137-4586-866e-2ab6baacdc32)
+## Logger 설정
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/d14f90f1-d846-45d1-8630-6e68cb978451)
+```
+서비스 구현에 앞서 디버깅을 위한 로그 설정을 한다. 로그 라이브러리 중 Slf4j 라이브러리를 사용한다.
+Slf4j (Simple Logging Facade for Java) 롬복 어노테이션을 TodoService 클래스 위에 작성하였다.
+```
 
