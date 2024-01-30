@@ -138,9 +138,28 @@ body의 내용은 @ResponseBody와 동일하다.
 ```
 todoController에는 200 ok http status를 반환하는 메서드를 작성하였다.
 ```
-
-
-
+## TodoService
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/8af67207-59fc-4701-9861-90ea71f71b6e)
+```
+Todo 프로젝트를 위한 비즈니스 로직 구현을 위한 TodoServie 클래스를 작성한다.
+```
+## TodoController
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/bdda528f-6e74-4d2a-85a7-98ab824ea516)
+```
+TodoController에서 TodoService를 @Autowired 어노테이션을 써서 빈에 등록하여 사용한다.
+```
+## TodoService Test
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/995e3bab-1900-4d83-beec-db86b00a2445)
+```
+GET localhost:8080/todo/test 요청을 보내면 "Test Service"를 담은 ResponseDTO가 리턴되는 것을 알 수 있다.
+```
+## TodoEntity
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/4b249983-3008-481d-8891-e940806629c4)
+```
+TodoEntity에 @Entity, @Table 어노테이션을 추가하고 @Id를 이용하여 id필드를 기본키로 설정하였다.
+@GeneratedValue로 ID를 자동으로 생성하되 문자열 형태의 UUID를 사용하기 위해 @GenericGenerator로 generator의 이름을
+system-uuid로 정의하고 이를 @GenerateValue의 generator에서 사용하였다.
+```
 
 
 
