@@ -179,4 +179,10 @@ findById 쿼리를 이용하여 저장한 TodoEntity의 title을 출력한다.
 서비스 구현에 앞서 디버깅을 위한 로그 설정을 한다. 로그 라이브러리 중 Slf4j 라이브러리를 사용한다.
 Slf4j (Simple Logging Facade for Java) 롬복 어노테이션을 TodoService 클래스 위에 작성하였다.
 ```
-
+## TodoService create 메서드
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/666990ec-c4c5-43ce-bbd9-df9d1c01fa17)
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/083e83a9-70de-4cae-b997-0c8ecfaaf74e)
+```
+TodoRepository에서 findByUserId 메서드를 추가한 후 TodoService 클래스에 create 메서드를 작성한다.
+TodoEntity를 데이터베이스에 저장하고 UserId로 Entity를 조회한다.
+```
