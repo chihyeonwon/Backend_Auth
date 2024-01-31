@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.security.PublicKey;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,10 @@ public class TodoService {
 			log.warn("Unknown user.");
 			throw new RuntimeException("Unknown user.");
 		}
+	}
+	
+	public List<TodoEntity> retrieve(final String userId) {
+		return repository.findByUserId(userId);
 	}
 	
 }
