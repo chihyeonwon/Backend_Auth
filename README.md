@@ -191,10 +191,24 @@ TodoEntity를 데이터베이스에 저장하고 UserId로 Entity를 조회한�
 ```
 create 메서드 안의 검증 부분은 다른 메서드에서도 쓰일 예정이므로 validate 메서드로 리팩토링한다.
 ```
-
-
-
-
+## TodoDTO
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/3d0b5dcf-8d4a-4306-b4fe-45a2b7a1a184)
+```
+DTO를 Entity로 변환하기 위한 toEntity 메서드를 TodoDTO 클래스에 추가한다.
+```
+## TodoController
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/0cf8f3d9-94ef-4b3a-affa-fbe0b26e3910)
+```
+TodoDTO를 요청 바디로 넘겨받고 이를 TodoEntity로 변환하여 저장하고 그 Entity의 값들을 설정한 후 다시
+create로 새로운 Entity를 생성한다. 그 Entity 리스트를 TodoDTO 리스트로 변환하고 TodoDTO 리스트를 이용해서
+ResponseDTO를 초기화하고 리턴한다.
+```
+## Post 요청 테스팅
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/8f772cb2-9996-49d0-b8f2-13b7bf948c7c)
+```
+localhost8080:todo 경로에 JSONRequest Body를 "title" : "새 포스트1"로 작성하여 HTTP POST 요청을 보내면
+다음과 같은 JSON 형태의 HTTP 응답이 리턴된다. 
+```
 
 
 
