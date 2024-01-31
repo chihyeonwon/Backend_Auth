@@ -209,8 +209,26 @@ ResponseDTO를 초기화하고 리턴한다.
 localhost8080:todo 경로에 JSONRequest Body를 "title" : "새 포스트1"로 작성하여 HTTP POST 요청을 보내면
 다음과 같은 JSON 형태의 HTTP 응답이 리턴된다. 
 ```
+## Retrieve Todo 구현
+## TodoService retrieve 메서드
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/c8534fba-2972-45d5-a38a-732811b81a9a)
+```
+리포지토리의 findByUserId()를 이용해서 UserId를 가지고 TodoEntity를 조회(retrieve)하는 메서드인
+retrieve 메서드를 작성한다.
+```
+## TodoController
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/0ad91ff7-d716-4072-8530-3e82ca1ac944)
+```
+데이터베이스에 저장된 TodoEntity를 UserId를 이용해서 찾고 Entity 리스트를 DTO 리스트로 변환한 후 리턴하는
+GET 메서드인 retrieveTodoList 메서드를 작성한다.
+```
 
-
+## 테스팅
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/23c6520d-961b-4c15-b33d-ea8977881807)
+```
+POST로 요청 데이터를 Create한 후에 localhost:8080/todo 경로로 HTTP GET 요청을 보내면 해당하는 userId의 Todo 데이터를
+JSON 형태의 HTTP 응답이 리턴하는 것을 확인할 수 있다.
+```
 
 
 
