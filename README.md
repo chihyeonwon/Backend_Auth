@@ -217,12 +217,11 @@ localhost8080:todo 경로에 JSONRequest Body를 "title" : "새 포스트1"로 �
 retrieve 메서드를 작성한다.
 ```
 ## TodoController
-![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/0ad91ff7-d716-4072-8530-3e82ca1ac944)
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/171324c5-9860-498f-80f9-a559683446e3)
 ```
 데이터베이스에 저장된 TodoEntity를 UserId를 이용해서 찾고 Entity 리스트를 DTO 리스트로 변환한 후 리턴하는
 GET 메서드인 retrieveTodoList 메서드를 작성한다.
 ```
-
 ## 테스팅
 ![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/23c6520d-961b-4c15-b33d-ea8977881807)
 ```
