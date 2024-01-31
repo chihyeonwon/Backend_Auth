@@ -216,7 +216,7 @@ localhost8080:todo 경로에 JSONRequest Body를 "title" : "새 포스트1"로 �
 리포지토리의 findByUserId()를 이용해서 UserId를 가지고 TodoEntity를 조회(retrieve)하는 메서드인
 retrieve 메서드를 작성한다.
 ```
-## TodoController
+## TodoController retrieveTodoList 메서드
 ![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/171324c5-9860-498f-80f9-a559683446e3)
 ```
 데이터베이스에 저장된 TodoEntity를 UserId를 이용해서 찾고 Entity 리스트를 DTO 리스트로 변환한 후 리턴하는
@@ -228,11 +228,41 @@ GET 메서드인 retrieveTodoList 메서드를 작성한다.
 POST로 요청 데이터를 Create한 후에 localhost:8080/todo 경로로 HTTP GET 요청을 보내면 해당하는 userId의 Todo 데이터를
 JSON 형태의 HTTP 응답이 리턴하는 것을 확인할 수 있다.
 ```
+## Update Todo 구현
+## TodoService update 메서드
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/3346b063-4263-4325-a05b-2181b4a1580f)
+```
+기존에 존재하는 Entity를 데이터베이스에서 가져온 다음 새로운 entity 값으로 덮어 씌우는 update 메서드를 작성한다.
+```
+## TodoController updateTodo 메서드
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/da895161-c780-441e-ab14-dc14bbb2e018)
+```
+PUT 메서드인 updateTodo 메서드를 작성한다.
+```
+## 테스팅
+#### Update Todo 테스트를 위한 Todo 아이템 생성
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/e83e9936-dc21-4f1f-8d63-47c85ee5b837)
+#### HTTP PUT을 이용해 Todo 아이템 업데이트
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/841b0cb2-0125-4e77-b76a-a34ebb57946c)
+```
+POST로 Todo를 생성한 후 생성된 id를 복사해서 요청 body의 id로 넣고 title과 done을 수정한 후에 localhost:8080/todo 경로로
+HTTP PUT 요청을 보내면 해당하는 id의 Todo 아이템 정보가 수정되는 것을 확인할 수 있다.
+```
+## Delete Todo 구현
+## TodoService delete 메서드
 
+```
 
+```
+## TodoController deleteTodo 메서드
 
+```
 
+```
+## 테스팅
 
+```
 
+```
 
 
