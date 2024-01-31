@@ -186,3 +186,22 @@ Slf4j (Simple Logging Facade for Java) 롬복 어노테이션을 TodoService 클
 TodoRepository에서 findByUserId 메서드를 추가한 후 TodoService 클래스에 create 메서드를 작성한다.
 TodoEntity를 데이터베이스에 저장하고 UserId로 Entity를 조회한다.
 ```
+## TodoService 리팩토링
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/c67af185-eea5-4e2f-ad59-705653aacc5e)
+```
+create 메서드 안의 검증 부분은 다른 메서드에서도 쓰일 예정이므로 validate 메서드로 리팩토링한다.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
