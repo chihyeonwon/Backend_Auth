@@ -250,19 +250,23 @@ HTTP PUT 요청을 보내면 해당하는 id의 Todo 아이템 정보가 수정�
 ```
 ## Delete Todo 구현
 ## TodoService delete 메서드
-
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/110d62b8-78a7-49e5-815f-adda1b61c09f)
 ```
-
+Delete 기능을 구현하기 위해 delete 메서드를 작성한다.
 ```
 ## TodoController deleteTodo 메서드
-
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/75afafac-f826-4c05-9ea3-ff3d7ef85bdc)
 ```
-
+DELETE 메서드인 updateTodo 메서드를 작성한다.
 ```
 ## 테스팅
-
+#### Delete Todo 테스트를 위한 Todo 아이템 생성
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/1408d58b-7e3b-432f-9577-de9a30c2381d)
+#### HTTP DELETE를 이용해 Todo 아이템 삭제
+![image](https://github.com/wonchihyeon/Todo_Backend/assets/58906858/d1ff1af9-dd6f-4c0d-b463-69770e267b9b)
 ```
-
+POST로 Todo를 생성한 후 생성된 id를 복사해서 요청 body의 id로 넣고 localhost:8080/todo 경로로
+HTTP DELETE 요청을 보내면 Todo 아이템이 삭제되고 빈 리스트가 리턴된 것을 확인할 수 있다.
 ```
 
 
