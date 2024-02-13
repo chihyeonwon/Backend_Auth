@@ -31,9 +31,9 @@ UserController는 두 가지 기능을 제공한다. 회원가입을 위한 /sin
 로그인을 위한 /signin API 엔드포인트이다.
 ```
 #### 회원가입 API를 이용한 계정 생성
-
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/8834982c-4476-441e-9cd6-8212d3de4721)
 #### 로그인 테스팅
-
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/c1ae971f-5374-4473-843c-c4daf6e52975)
 ```
 회원가입과 로그인이 잘 작동하는 것을 확인할 수 있다. 하지만 이렇게 구현하였을 때 문제점은 세 가지가 있다.
 
@@ -41,6 +41,7 @@ UserController는 두 가지 기능을 제공한다. 회원가입을 위한 /sin
 2. 유저의 로그인 여부 자체를 확인하지 않는다. 같은 Todo 리스트를 보게 된다.
 3. 패스워드를 암호화하지 않아 보안 규정에 위배되는 사항이 발생한다.
 ```
+## Spring Security 통합
 
 
 
