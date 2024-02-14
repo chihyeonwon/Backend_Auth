@@ -43,6 +43,36 @@ UserController는 두 가지 기능을 제공한다. 회원가입을 위한 /sin
 ```
 ## Spring Security 통합
 
+#### jjwt 라이브러리 디펜던시에 추가
+
+```
+build.gradle의 dependencies 부분에 jjwt 라이브러리를 추가한다.
+```
+#### TokenProvider
+
+```
+security 패키지 밑에 TokenProvider 클래스를 작성한다. 이 클래스는 유저 정보를 받아서 JWT를 생성한다.
+```
+#### UserController의 /signin에서 토큰 생성 및 반환
+
+```
+signin 로그인 부분에 TokenProvider를 이용해 토큰을 생성한 후 UserDTO token에 반환한다.
+```
+#### 계정 생성 테스팅
+
+#### 로그인 요청 테스팅
+
+```
+signin에 HTTP POST 메서드 요청을 보낸 후 token 필드가 반한되는 것을 알 수 있다.
+```
+
+
+
+
+
+
+
+
 
 
 
