@@ -44,24 +44,75 @@ UserController는 두 가지 기능을 제공한다. 회원가입을 위한 /sin
 ## Spring Security 통합
 
 #### jjwt 라이브러리 디펜던시에 추가
-
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/662b459c-1edc-486d-9f1a-14df401501d6)
 ```
 build.gradle의 dependencies 부분에 jjwt 라이브러리를 추가한다.
 ```
 #### TokenProvider
+```java
+public class TokenProvider {
+  private static final String SECRET_KEY = "FlRpX30pMqDbiAkmlfArbrmVkDD4RqISskGZmBFax5oGVxzXXWUzTR5JyskiHMIV9M1Oicegkpi46AdvrcX1E6CmTUBc6IFbTPiD";
 
+  public String create(UserEntity userEntity) {
+    // 기한 지금으로부터 1일로 설정
+    Date expiryDate = Date.from(
+        Instant.now()
+            .plus(1, ChronoUnit.DAYS));
+
+  /*
+  { // header
+    "alg":"HS512"
+  }.
+  { // payload
+    "sub":"40288093784915d201784916a40c0001",
+    "iss": "demo app",
+    "iat":1595733657,
+    "exp":1596597657
+  }.
+  // SECRET_KEY를 이용해 서명한 부분
+  Nn4d1MOVLZg79sfFACTIpCPKqWmpZMZQsbNrXdJJNWkRv50_l7bPLQPwhMobT4vBOG6Q3JYjhDrKFlBSaUxZOg
+   */
+    // JWT Token 생성
+    return Jwts.builder()
+        // header에 들어갈 내용 및 서명을 하기 위한 SECRET_KEY
+        .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+        // payload에 들어갈 내용
+        .setSubject(userEntity.getId()) // sub
+        .setIssuer("demo app") // iss
+        .setIssuedAt(new Date()) // iat
+        .setExpiration(expiryDate) // exp
+        .compact();
+  }
+
+
+  public String validateAndGetUserId(String token) {
+    // parseClaimsJws메서드가 Base 64로 디코딩 및 파싱.
+    // 즉, 헤더와 페이로드를 setSigningKey로 넘어온 시크릿을 이용 해 서명 후, token의 서명 과 비교.
+    // 위조되지 않았다면 페이로드(Claims) 리턴, 위조라면 예외를 날림
+    // 그 중 우리는 userId가 필요하므로 getBody를 부른다.
+    Claims claims = Jwts.parser()
+        .setSigningKey(SECRET_KEY)
+        .parseClaimsJws(token)
+        .getBody();
+
+    return claims.getSubject();
+  }
+
+
+}
+```
 ```
 security 패키지 밑에 TokenProvider 클래스를 작성한다. 이 클래스는 유저 정보를 받아서 JWT를 생성한다.
 ```
-#### UserController의 /signin에서 토큰 생성 및 반환
-
+#### UserController의 /signin에서 토큰 생성 및 UserDTO로 토큰 반환
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/27dcf523-4bc3-4b7b-b5db-131e36d6d85d)
 ```
 signin 로그인 부분에 TokenProvider를 이용해 토큰을 생성한 후 UserDTO token에 반환한다.
 ```
 #### 계정 생성 테스팅
-
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/0a924790-b62a-486a-a13c-6c98004d55f7)
 #### 로그인 요청 테스팅
-
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/5d954c41-fe44-44ea-9669-c5880aa156aa)
 ```
 signin에 HTTP POST 메서드 요청을 보낸 후 token 필드가 반한되는 것을 알 수 있다.
 ```
