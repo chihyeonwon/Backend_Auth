@@ -116,10 +116,123 @@ signin 로그인 부분에 TokenProvider를 이용해 토큰을 생성한 후 Us
 ```
 signin에 HTTP POST 메서드 요청을 보낸 후 token 필드가 반한되는 것을 알 수 있다.
 ```
+## JWT를 이용한 인증 구현
+#### Spring Security 의존성 추가
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/f2fc848c-9836-47db-acad-b0c654cb4a7d)
+```
+build.gradle의 dependencies 부분에 스프링 시큐리티 의존성을 추가했다.
+```
+#### JwtAuthenticationFilter
+```java
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+  @Autowired
+  private TokenProvider tokenProvider;
 
+  @Override
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    try {
+      // 요청에서 토큰 가져오기.
+      String token = parseBearerToken(request);
+      log.info("Filter is running...");
+      // 토큰 검사하기. JWT이므로 인가 서버에 요청 하지 않고도 검증 가능.
+      if (token != null && !token.equalsIgnoreCase("null")) {
+        // userId 가져오기. 위조 된 경우 예외 처리 된다.
+        String userId = tokenProvider.validateAndGetUserId(token);
+        log.info("Authenticated user ID : " + userId );
+        // 인증 완료; SecurityContextHolder에 등록해야 인증된 사용자라고 생각한다.
+        AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+            userId, // 인증된 사용자의 정보. 문자열이 아니어도 아무거나 넣을 수 있다. 보통 UserDetails라는 오브젝트를 넣는데, 우리는 안 만들었음.
+            null, //
+            AuthorityUtils.NO_AUTHORITIES
+        );
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(authentication);
+        SecurityContextHolder.setContext(securityContext);
+      }
+    } catch (Exception ex) {
+      logger.error("Could not set user authentication in security context", ex);
+    }
 
+    filterChain.doFilter(request, response);
+  }
 
+  private String parseBearerToken(HttpServletRequest request) {
+    // Http 요청의 헤더를 파싱해 Bearer 토큰을 리턴한다.
+    String bearerToken = request.getHeader("Authorization");
+
+    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+      return bearerToken.substring(7);
+    }
+    return null;
+  }
+}
+```
+```
+OncePerRequestFilter 클래스를 상속해 JwtAuthenticationFilter를 구현한다.
+OncePerReuqestFilter는 한 요청당 반드시 한 번만 실행된다.
+
+토큰을 인증하는 과정은 다음과 같다.
+1. 요청의 헤더에서 Bearer 토큰을 가져온다 (parseBearerToken())
+2. TokenProvider를 이용해 토큰을 인증하고 UsernamePasswordAuthenticationToken을 작성한다.
+이 오브젝트에 사용자의 인증 정보를 저장하고 SecurityContext에 인증된 사용자를 등록한다.
+```
+#### WebSecurityConfig
+[WebSecurityConfigurerAdpater -> SecurityFilterChain을 @Bean으로 등록해서 사용](https://devlog-wjdrbs96.tistory.com/434)
+```java
+public class WebSecurityConfig {
+
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .cors()
+            .and()
+            .csrf().disable()
+            .httpBasic().disable()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
+            .antMatchers("/", "/auth/**").permitAll() // /와 /auth/** 경로는 인증 안 해도 됨.
+            .anyRequest().authenticated() // /와 /auth/** 이외의 모든 경로는 인증해야됨.
+            .and()
+            .addFilterAfter(jwtAuthenticationFilter, CorsFilter.class); // filter 등록. 매 요청마다 CorsFilter를 실행한 후에 jwtAuthenticationFilter를 실행한다.
+
+        return http.build();
+    }
+}
+```
+```
+서블릿 컨테이너에게 방금 생성한 서블릿 필터(JwtAuthenticationFilter)를 사용하라고 알려주는 설정작업을 해준다.
+스프링 시큐리티에게 JwtAuthenticationFilter를 사용하라고 설정한다.(addFilterAfter())
+
+WebSecurityConfigurerAdapter를 extends 해서 configure 메소드를 오버라이딩 해서 구현했었다.
+하지만 이제 WebSecurityConfigurerAdapter가 Deprecated가 되어서 사용할 수 없다보니 다른 것을 사용해서 구현해야 한다.
+
+SecurityFilterChain를 Bean으로 등록해서 사용한다.
+
+매개변수인 HttpSecurity 오브젝트는 시큐리티 설정을 위한 오브젝트로
+빌더를 제공하는 데, 이 빌더를 이용해서 cors, csrf, httpbasic, session, authorizeRequest 등 다양한 설정을
+할 수 있다. 
+```
+#### 테스팅
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/b864fed8-8412-44d9-aa24-695538940d33)
+```
+signup 회원가입과 signin 로그인 이후에 반환되는 토큰을 복사한다.
+```
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/af562b60-7330-462b-afb5-6eaaed7d0ddf)
+```
+복사한 토큰을 포스트맨의 주소창 아래의 Authentication을 누르고 Type을 Bearer Token을 선택한 후 오른쪽에 토큰을 넣는 곳에
+넣는다. 그리고 localhost:8080/todo 로 HTTP GET 요청을 보내면 error와 data가 날아오면 정상적으로 인증된 것이다.
+```
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/91e4f980-64c2-4c6a-a256-e2812e4c26d1)
+```
+토큰의 마지막에 아무 문자열 123123을 넣고 다시 Send를 보내면 403 Forbidden이 반환되는 것을 알 수 있다.
+JWT를 신뢰할 수 없어 예외처리가 된 것을 확인할 수 있다. 
+```
 
 
 
