@@ -29,10 +29,10 @@ public class WebSecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/", "/auth/**").permitAll()
-            .anyRequest().authenticated()
+            .antMatchers("/", "/auth/**").permitAll() // /와 /auth/** 경로는 인증 안 해도 됨.
+            .anyRequest().authenticated() // /와 /auth/** 이외의 모든 경로는 인증해야됨.
             .and()
-            .addFilterAfter(jwtAuthenticationFilter, CorsFilter.class);
+            .addFilterAfter(jwtAuthenticationFilter, CorsFilter.class); // filter 등록. 매 요청마다 CorsFilter를 실행한 후에 jwtAuthenticationFilter를 실행한다.
 
         return http.build();
     }
