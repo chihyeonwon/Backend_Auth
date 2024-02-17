@@ -235,9 +235,14 @@ JWT를 신뢰할 수 없어 예외처리가 된 것을 확인할 수 있다.
 ```
 ## TodoController에서 인증된 유저 사용하기
 #### @AuthenticatedPrincipal을 사용하는 TodoController
-
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/46168717-9768-4041-ae50-f292e93edb10)
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/3cb227fd-3f19-4eff-9e6b-a9500a9acae8)
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/e0fcd1a3-1e03-47d2-aecc-e1f7fd329acd)
+![image](https://github.com/chihyeonwon/Backend_Auth/assets/58906858/ecbe1676-096e-4a4b-951c-0addd1e4d51b)
 ```
-
+각 메서드들이 인증된 유저 아이디를 사용할 수 있도록 userId 매개변수를 추가해준다.
+@AuthenticationPrincipal (userId 토큰으로 인증된 유저아이디)를
+스프링이 UsernamePasswordAuthenticationToken 오브젝트에서 찾아서 가져온다.
 ```
 #### 테스팅 
 
